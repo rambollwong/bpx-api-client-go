@@ -97,3 +97,7 @@ func (c *Client) Futures() Futures {
 func (c *Client) History() History {
 	return History{c}
 }
+
+func (c *Client) Order() Order {
+	return Order{c}
+}
