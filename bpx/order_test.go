@@ -23,7 +23,7 @@ func TestOrder_ExecuteOrder(t *testing.T) {
 	c := NewClient(key, secret).Order()
 	quantity := "5"
 	postOnly := true
-	price := "0.25070"
+	price := "0.17"
 	resp, err := c.ExecuteOrder(types.ExecuteOrderReq{
 		OrderType: "Limit",
 		Symbol:    "DOGE_USDC_PERP",

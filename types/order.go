@@ -48,6 +48,7 @@ type Order struct {
 	CreatedAt              int64   `json:"createdAt,omitempty"`
 	ExecutedQuantity       string  `json:"executedQuantity,omitempty"`
 	ExecutedQuoteQuantity  string  `json:"executedQuoteQuantity,omitempty"`
+	Price                  *string `json:"price,omitempty"`
 	Quantity               *string `json:"quantity,omitempty"`
 	QuoteQuantity          *string `json:"quoteQuantity,omitempty"`
 	ReduceOnly             *bool   `json:"reduceOnly,omitempty"`

@@ -154,6 +154,20 @@ func (ws *WsClient) WithAutoReconnect(auto bool) *WsClient {
 	return ws
 }
 
+func (ws *WsClient) WithProxy(proxy string) *WsClient {
+	ws.mu.Lock()
+	defer ws.mu.Unlock()
+	ws.Proxy = proxy
+	return ws
+}
+
+func (ws *WsClient) WithWindow(window string) *WsClient {
+	ws.mu.Lock()
+	defer ws.mu.Unlock()
+	ws.Window = window
+	return ws
+}
+
 func (ws *WsClient) OnConnect(hook func()) *WsClient {
 	ws.mu.Lock()
 	defer ws.mu.Unlock()
