@@ -5,8 +5,10 @@ import (
 	"crypto/ed25519"
 	"encoding/base64"
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -14,6 +16,17 @@ import (
 	"bpx-api-client-go/types"
 )
 
+func (c *Client) SetProxy(proxy string) error {
+	c.Proxy = proxy
+
+	proxyUrl, err := url.Parse(proxy)
+	if err != nil {
+		return fmt.Errorf("parse proxy url error: %w", err)
+	}
+	c.httpCli.Transport.(*http.Transport).Proxy = http.ProxyURL(proxyUrl)
+
+	return nil
+}
 func (c *Client) SetHttpTimeout(timeout time.Duration) {
 	c.httpCli.Timeout = timeout
 }
