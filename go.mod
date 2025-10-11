@@ -1,4 +1,4 @@
-module bpx-api-client-go
+module github.com/rambollwong/bpx-api-client-go
 
 go 1.24
 
