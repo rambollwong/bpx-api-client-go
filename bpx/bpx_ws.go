@@ -358,6 +358,25 @@ func (ws *WsClient) autoReconnect(reason error) {
 	}
 }
 
+func (ws *WsClient) keepAlive() {
+	ticker := time.NewTicker(time.Second * 5)
+	defer ticker.Stop()
+	for {
+		select {
+		case <-ws.ctx.Done():
+			return
+		case <-ws.done:
+			return
+		case <-ticker.C:
+			if ws.getStatus() == WsStatusConnected {
+				if err := ws.getConn().WriteMessage(websocket.PingMessage, []byte("Ping")); err != nil {
+					return
+				}
+			}
+		}
+	}
+}
+
 func (ws *WsClient) handleMessages() {
 	for {
 		select {

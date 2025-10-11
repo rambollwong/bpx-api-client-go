@@ -206,6 +206,9 @@ func (ws *WsClient) Connect() error {
 	// Start message handling
 	go ws.handleMessages()
 
+	// Start keep alive
+	go ws.keepAlive()
+
 	// Call onConnectHooks
 	for _, hook := range ws.onConnectHooks {
 		hook()
