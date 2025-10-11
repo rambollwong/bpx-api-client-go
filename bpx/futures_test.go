@@ -3,7 +3,7 @@ package bpx
 import (
 	"testing"
 
-	"bpx-api-client-go/types"
+	"github.com/rambollwong/bpx-api-client-go/types"
 
 	"github.com/stretchr/testify/require"
 )

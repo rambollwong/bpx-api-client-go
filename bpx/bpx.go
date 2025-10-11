@@ -227,7 +227,11 @@ func (ws *WsClient) Connect() error {
 func (ws *WsClient) Disconnect(err error) {
 	ws.setStatus(WsStatusDisconnecting)
 
-	close(ws.done)
+	select {
+	case <-ws.done:
+	default:
+		close(ws.done)
+	}
 
 	conn := ws.getConn()
 	conn.Close()

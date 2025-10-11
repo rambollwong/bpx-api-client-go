@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"bpx-api-client-go/types"
+	"github.com/rambollwong/bpx-api-client-go/types"
 )
 
 func (c *Client) SetProxy(proxy string) error {

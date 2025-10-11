@@ -30,8 +30,8 @@ import (
     "fmt"
     "log"
 
-    "bpx-api-client-go/bpx"
-    "bpx-api-client-go/types"
+    "github.com/rambollwong/bpx-api-client-go/bpx"
+    "github.com/rambollwong/bpx-api-client-go/types"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"bpx-api-client-go/types"
+	"github.com/rambollwong/bpx-api-client-go/types"
 )
 
 const (
