@@ -248,7 +248,7 @@ func (ws *WsClient) Disconnect(err error) {
 	}
 
 	conn := ws.getConn()
-	conn.Close()
+	_ = conn.Close()
 
 	ws.setStatus(WsStatusDisconnected)
 	for _, hook := range ws.onDisconnectHooks {

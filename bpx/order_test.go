@@ -36,6 +36,23 @@ func TestOrder_ExecuteOrder(t *testing.T) {
 	require.NotNil(t, resp)
 }
 
+func TestOrder_ExecuteMarketOrder(t *testing.T) {
+	c := NewClient(key, secret).Order()
+	quantity := "5"
+	//postOnly := true
+	//price := "0.17"
+	resp, err := c.ExecuteOrder(types.ExecuteOrderReq{
+		OrderType: "Market",
+		Symbol:    "DOGE_USDC_PERP",
+		Side:      types.SideBid,
+		Quantity:  &quantity,
+		//PostOnly:  &postOnly,
+		//Price:     &price,
+	})
+	require.NoError(t, err)
+	require.NotNil(t, resp)
+}
+
 func TestOrder_CancelOrder(t *testing.T) {
 	c := NewClient(key, secret).Order()
 	var orderId = "12744882364"

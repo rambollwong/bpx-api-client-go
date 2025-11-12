@@ -1,6 +1,7 @@
 package bpx
 
 import (
+	"context"
 	"crypto/ed25519"
 	"encoding/base64"
 	"encoding/json"
@@ -364,6 +365,7 @@ func (ws *WsClient) keepAlive() {
 	for {
 		select {
 		case <-ws.ctx.Done():
+			ws.Disconnect(context.Canceled)
 			return
 		case <-ws.done:
 			return
