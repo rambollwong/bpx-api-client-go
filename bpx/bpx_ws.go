@@ -349,13 +349,27 @@ func (ws *WsClient) resubscribe() error {
 	return nil
 }
 
-func (ws *WsClient) autoReconnect(reason error) {
+func (ws *WsClient) tryReconnect(reason error) {
 	ws.Disconnect(reason)
-	if !ws.AutoReconnect {
+	if !ws.autoReconnect {
 		return
 	}
 	if err := ws.Connect(); err != nil {
 		ws.pushErr(fmt.Errorf("reconnect error: %w", err))
+	} else {
+		return
+	}
+	for {
+		select {
+		case <-ws.ctx.Done():
+			return
+		case <-time.After(time.Second):
+			if err := ws.Connect(); err != nil {
+				ws.pushErr(fmt.Errorf("reconnect error: %w", err))
+				continue
+			}
+			return
+		}
 	}
 }
 
@@ -393,7 +407,7 @@ func (ws *WsClient) handleMessages() {
 		conn := ws.getConn()
 		msgType, msg, err := conn.ReadMessage()
 		if err != nil {
-			ws.autoReconnect(err)
+			ws.tryReconnect(err)
 			return
 		}
 
@@ -406,7 +420,7 @@ func (ws *WsClient) handleMessages() {
 		case websocket.PongMessage:
 			continue
 		case websocket.CloseMessage:
-			ws.autoReconnect(errors.New("closed by server"))
+			ws.tryReconnect(errors.New("closed by server"))
 		default:
 			for _, hook := range ws.onMessageHooks {
 				hook(msg)

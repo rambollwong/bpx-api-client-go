@@ -104,7 +104,7 @@ type WsClient struct {
 	Secret        string
 	Proxy         string
 	Window        string
-	AutoReconnect bool
+	autoReconnect bool
 
 	mu     sync.RWMutex
 	ws     *websocket.Conn
@@ -150,7 +150,7 @@ func NewWsClient(key, secret string) *WsClient {
 func (ws *WsClient) WithAutoReconnect(auto bool) *WsClient {
 	ws.mu.Lock()
 	defer ws.mu.Unlock()
-	ws.AutoReconnect = auto
+	ws.autoReconnect = auto
 	return ws
 }
 
