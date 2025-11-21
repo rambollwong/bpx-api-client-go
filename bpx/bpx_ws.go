@@ -349,22 +349,22 @@ func (ws *WsClient) resubscribe() error {
 	return nil
 }
 
-func (ws *WsClient) tryReconnect(reason error) {
+func (ws *WsClient) tryReconnect(ctx context.Context, reason error) {
 	ws.Disconnect(reason)
 	if !ws.autoReconnect {
 		return
 	}
-	if err := ws.Connect(); err != nil {
+	if err := ws.Connect(ctx); err != nil {
 		ws.pushErr(fmt.Errorf("reconnect error: %w", err))
 	} else {
 		return
 	}
 	for {
 		select {
-		case <-ws.ctx.Done():
+		case <-ctx.Done():
 			return
 		case <-time.After(time.Second):
-			if err := ws.Connect(); err != nil {
+			if err := ws.Connect(ctx); err != nil {
 				ws.pushErr(fmt.Errorf("reconnect error: %w", err))
 				continue
 			}
@@ -373,12 +373,12 @@ func (ws *WsClient) tryReconnect(reason error) {
 	}
 }
 
-func (ws *WsClient) keepAlive() {
+func (ws *WsClient) keepAlive(ctx context.Context) {
 	ticker := time.NewTicker(time.Second * 5)
 	defer ticker.Stop()
 	for {
 		select {
-		case <-ws.ctx.Done():
+		case <-ctx.Done():
 			ws.Disconnect(context.Canceled)
 			return
 		case <-ws.done:
@@ -393,10 +393,10 @@ func (ws *WsClient) keepAlive() {
 	}
 }
 
-func (ws *WsClient) handleMessages() {
+func (ws *WsClient) handleMessages(ctx context.Context) {
 	for {
 		select {
-		case <-ws.ctx.Done():
+		case <-ctx.Done():
 			return
 		case <-ws.done:
 			return
@@ -407,7 +407,7 @@ func (ws *WsClient) handleMessages() {
 		conn := ws.getConn()
 		msgType, msg, err := conn.ReadMessage()
 		if err != nil {
-			ws.tryReconnect(err)
+			ws.tryReconnect(ctx, err)
 			return
 		}
 
@@ -420,7 +420,7 @@ func (ws *WsClient) handleMessages() {
 		case websocket.PongMessage:
 			continue
 		case websocket.CloseMessage:
-			ws.tryReconnect(errors.New("closed by server"))
+			ws.tryReconnect(ctx, errors.New("closed by server"))
 		default:
 			for _, hook := range ws.onMessageHooks {
 				hook(msg)

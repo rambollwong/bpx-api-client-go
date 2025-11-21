@@ -23,19 +23,13 @@ type Client struct {
 	Window string
 
 	httpCli *http.Client
-
-	ctx        context.Context
-	cancelFunc context.CancelFunc
 }
 
-func NewClientWithContext(ctx context.Context, key, secret string) *Client {
-	c, cancel := context.WithCancel(ctx)
+func NewClient(key, secret string) *Client {
 	cli := &Client{
-		Key:        key,
-		Secret:     secret,
-		Window:     "60000",
-		ctx:        c,
-		cancelFunc: cancel,
+		Key:    key,
+		Secret: secret,
+		Window: "60000",
 	}
 	cli.httpCli = &http.Client{
 		Timeout: time.Second * 5,
@@ -46,10 +40,6 @@ func NewClientWithContext(ctx context.Context, key, secret string) *Client {
 	}
 
 	return cli
-}
-
-func NewClient(key, secret string) *Client {
-	return NewClientWithContext(context.Background(), key, secret)
 }
 
 func (c *Client) Asserts() Assets {
@@ -97,7 +87,6 @@ func (c *Client) Order() Order {
 }
 
 type WsClient struct {
-	ctx  context.Context
 	done chan struct{}
 
 	Key           string
@@ -129,9 +118,8 @@ type WsClient struct {
 	errChan chan error
 }
 
-func NewWsClientWithContext(ctx context.Context, key, secret string) *WsClient {
+func NewWsClient(key, secret string) *WsClient {
 	ws := &WsClient{
-		ctx:     ctx,
 		done:    make(chan struct{}),
 		Key:     key,
 		Secret:  secret,
@@ -141,10 +129,6 @@ func NewWsClientWithContext(ctx context.Context, key, secret string) *WsClient {
 		errChan: make(chan error, 1),
 	}
 	return ws
-}
-
-func NewWsClient(key, secret string) *WsClient {
-	return NewWsClientWithContext(context.Background(), key, secret)
 }
 
 func (ws *WsClient) WithAutoReconnect(auto bool) *WsClient {
@@ -195,7 +179,7 @@ func (ws *WsClient) ErrChan() <-chan error {
 	return ws.errChan
 }
 
-func (ws *WsClient) Connect() error {
+func (ws *WsClient) Connect(ctx context.Context) error {
 	if ws.getStatus() != WsStatusDisconnected {
 		return fmt.Errorf("websocket connection is not disconnected")
 	}
@@ -210,7 +194,7 @@ func (ws *WsClient) Connect() error {
 	} else {
 		dialer = websocket.Dialer{}
 	}
-	conn, _, err := dialer.DialContext(ws.ctx, EndpointWs, nil)
+	conn, _, err := dialer.DialContext(ctx, EndpointWs, nil)
 	if err != nil {
 		ws.setStatus(WsStatusDisconnected)
 		return fmt.Errorf("dial error: %w", err)
@@ -218,10 +202,10 @@ func (ws *WsClient) Connect() error {
 	ws.setConn(conn)
 
 	// Start message handling
-	go ws.handleMessages()
+	go ws.handleMessages(ctx)
 
 	// Start keep alive
-	go ws.keepAlive()
+	go ws.keepAlive(ctx)
 
 	// Call onConnectHooks
 	for _, hook := range ws.onConnectHooks {

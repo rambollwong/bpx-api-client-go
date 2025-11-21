@@ -1,6 +1,7 @@
 package bpx
 
 import (
+	"context"
 	"errors"
 	"testing"
 	"time"
@@ -14,7 +15,7 @@ func TestWsClient_Connect(t *testing.T) {
 	ws.OnConnect(func() {
 		triggerOnConnect = true
 	})
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	require.True(t, triggerOnConnect)
 }
@@ -25,7 +26,7 @@ func TestWsClient_Disconnect(t *testing.T) {
 	ws.OnDisconnect(func(err error) {
 		e = err
 	})
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	ws.Disconnect(errors.New("test"))
 
@@ -34,7 +35,7 @@ func TestWsClient_Disconnect(t *testing.T) {
 
 func TestWsClient_SubscribeDepth(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var depthC = make(chan WsDepthData)
 	err = ws.SubscribeDepth("ETH_USDC_PERP", "", func(data WsDepthData) {
@@ -53,7 +54,7 @@ func TestWsClient_SubscribeDepth(t *testing.T) {
 
 func TestWsClient_SubscribeBookTicker(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsBookTickerData)
 	err = ws.SubscribeBookTicker("ETH_USDC", func(data WsBookTickerData) {
@@ -72,7 +73,7 @@ func TestWsClient_SubscribeBookTicker(t *testing.T) {
 
 func TestWsClient_SubscribeKline(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsKlineData)
 	err = ws.SubscribeKline("ETH_USDC_PERP", "1m", func(data WsKlineData) {
@@ -91,7 +92,7 @@ func TestWsClient_SubscribeKline(t *testing.T) {
 
 func TestWsClient_SubscribeLiquidation(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsLiquidationData)
 	err = ws.SubscribeLiquidation("ETH_USDC_PERP", func(data WsLiquidationData) {
@@ -110,7 +111,7 @@ func TestWsClient_SubscribeLiquidation(t *testing.T) {
 
 func TestWsClient_SubscribeMarkPrice(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsMarkPriceData)
 	err = ws.SubscribeMarkPrice("ETH_USDC_PERP", func(data WsMarkPriceData) {
@@ -129,7 +130,7 @@ func TestWsClient_SubscribeMarkPrice(t *testing.T) {
 
 func TestWsClient_SubscribeTicker(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsTickerData)
 	err = ws.SubscribeTicker("ETH_USDC_PERP", func(data WsTickerData) {
@@ -148,7 +149,7 @@ func TestWsClient_SubscribeTicker(t *testing.T) {
 
 func TestWsClient_SubscribeOpenInterest(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsOpenInterestData)
 	err = ws.SubscribeOpenInterest("ETH_USDC_PERP", func(data WsOpenInterestData) {
@@ -167,7 +168,7 @@ func TestWsClient_SubscribeOpenInterest(t *testing.T) {
 
 func TestWsClient_SubscribeTrade(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsTradeData)
 	err = ws.SubscribeTrade("ETH_USDC_PERP", func(data WsTradeData) {
@@ -186,7 +187,7 @@ func TestWsClient_SubscribeTrade(t *testing.T) {
 
 func TestWsClient_SubscribeOrderUpdate(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsOrderData)
 	err = ws.SubscribeOrderUpdate("", func(data WsOrderData) {
@@ -205,7 +206,7 @@ func TestWsClient_SubscribeOrderUpdate(t *testing.T) {
 
 func TestWsClient_SubscribePositionUpdate(t *testing.T) {
 	ws := NewWsClient(key, secret)
-	err := ws.Connect()
+	err := ws.Connect(context.Background())
 	require.NoError(t, err)
 	var c = make(chan WsPositionData)
 	err = ws.SubscribePositionUpdate("", func(data WsPositionData) {
