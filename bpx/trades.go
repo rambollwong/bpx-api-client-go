@@ -27,7 +27,7 @@ func (c Trades) GetRecentTradesWithContext(ctx context.Context, req types.GetRec
 }
 
 func (c Trades) GetRecentTrades(req types.GetRecentTradesReq) ([]types.Trade, error) {
-	return c.GetRecentTradesWithContext(c.ctx, req)
+	return c.GetRecentTradesWithContext(context.Background(), req)
 }
 
 func (c Trades) GetHistoricalTradesWithContext(ctx context.Context, req types.GetHistoricalTradesReq) (resp []types.Trade, err error) {
@@ -39,5 +39,5 @@ func (c Trades) GetHistoricalTradesWithContext(ctx context.Context, req types.Ge
 	return
 }
 func (c Trades) GetHistoricalTrades(req types.GetHistoricalTradesReq) ([]types.Trade, error) {
-	return c.GetHistoricalTradesWithContext(c.ctx, req)
+	return c.GetHistoricalTradesWithContext(context.Background(), req)
 }

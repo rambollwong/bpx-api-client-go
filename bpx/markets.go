@@ -34,7 +34,7 @@ func (c Markets) GetMarketsWithContext(ctx context.Context) (resp []types.Market
 }
 
 func (c Markets) GetMarkets() ([]types.Market, error) {
-	return c.GetMarketsWithContext(c.ctx)
+	return c.GetMarketsWithContext(context.Background())
 }
 
 func (c Markets) GetMarketWithContext(ctx context.Context, req types.GetMarketReq) (resp *types.Market, err error) {
@@ -47,7 +47,7 @@ func (c Markets) GetMarketWithContext(ctx context.Context, req types.GetMarketRe
 }
 
 func (c Markets) GetMarket(req types.GetMarketReq) (*types.Market, error) {
-	return c.GetMarketWithContext(c.ctx, req)
+	return c.GetMarketWithContext(context.Background(), req)
 }
 
 func (c Markets) GetTickerWithContext(ctx context.Context, req types.GetTickerReq) (resp *types.Ticker, err error) {
@@ -60,7 +60,7 @@ func (c Markets) GetTickerWithContext(ctx context.Context, req types.GetTickerRe
 }
 
 func (c Markets) GetTicker(req types.GetTickerReq) (*types.Ticker, error) {
-	return c.GetTickerWithContext(c.ctx, req)
+	return c.GetTickerWithContext(context.Background(), req)
 }
 
 func (c Markets) GetTickersWithContext(ctx context.Context, req types.GetTickersReq) (resp []types.Ticker, err error) {
@@ -73,7 +73,7 @@ func (c Markets) GetTickersWithContext(ctx context.Context, req types.GetTickers
 }
 
 func (c Markets) GetTickers(req types.GetTickersReq) ([]types.Ticker, error) {
-	return c.GetTickersWithContext(c.ctx, req)
+	return c.GetTickersWithContext(context.Background(), req)
 }
 
 func (c Markets) GetDepthWithContext(ctx context.Context, req types.GetDepthReq) (resp *types.Depth, err error) {
@@ -86,7 +86,7 @@ func (c Markets) GetDepthWithContext(ctx context.Context, req types.GetDepthReq)
 }
 
 func (c Markets) GetDepth(req types.GetDepthReq) (*types.Depth, error) {
-	return c.GetDepthWithContext(c.ctx, req)
+	return c.GetDepthWithContext(context.Background(), req)
 }
 
 func (c Markets) GetKlinesWithContext(ctx context.Context, req types.GetKlinesReq) (resp []types.Kline, err error) {
@@ -99,7 +99,7 @@ func (c Markets) GetKlinesWithContext(ctx context.Context, req types.GetKlinesRe
 }
 
 func (c Markets) GetKlines(req types.GetKlinesReq) ([]types.Kline, error) {
-	return c.GetKlinesWithContext(c.ctx, req)
+	return c.GetKlinesWithContext(context.Background(), req)
 }
 
 func (c Markets) GetAllMarkPricesWithContext(ctx context.Context, req types.GetAllMarkPricesReq) (resp []types.MarkPrice, err error) {
@@ -112,7 +112,7 @@ func (c Markets) GetAllMarkPricesWithContext(ctx context.Context, req types.GetA
 }
 
 func (c Markets) GetAllMarketPrices(req types.GetAllMarkPricesReq) ([]types.MarkPrice, error) {
-	return c.GetAllMarkPricesWithContext(c.ctx, req)
+	return c.GetAllMarkPricesWithContext(context.Background(), req)
 }
 
 func (c Markets) GetOpenInterestWithContext(ctx context.Context, req types.GetOpenInterestReq) (resp []types.OpenInterest, err error) {
@@ -125,7 +125,7 @@ func (c Markets) GetOpenInterestWithContext(ctx context.Context, req types.GetOp
 }
 
 func (c Markets) GetOpenInterest(req types.GetOpenInterestReq) ([]types.OpenInterest, error) {
-	return c.GetOpenInterestWithContext(c.ctx, req)
+	return c.GetOpenInterestWithContext(context.Background(), req)
 }
 
 func (c Markets) GetFundingIntervalRatesWithContext(ctx context.Context, req types.GetFundingIntervalRatesReq) (resp types.GetFundingIntervalRatesResp, respHeader *types.ResponseHeaders, err error) {
@@ -137,5 +137,5 @@ func (c Markets) GetFundingIntervalRatesWithContext(ctx context.Context, req typ
 }
 
 func (c Markets) GetFundingIntervalRates(req types.GetFundingIntervalRatesReq) (types.GetFundingIntervalRatesResp, *types.ResponseHeaders, error) {
-	return c.GetFundingIntervalRatesWithContext(c.ctx, req)
+	return c.GetFundingIntervalRatesWithContext(context.Background(), req)
 }

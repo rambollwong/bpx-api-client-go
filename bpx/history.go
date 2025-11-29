@@ -36,7 +36,7 @@ func (c History) GetBorrowHistoryWithContext(ctx context.Context, req types.GetB
 }
 
 func (c History) GetBorrowHistory(req types.GetBorrowHistoryReq) (resp types.GetBorrowHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetBorrowHistoryWithContext(c.ctx, req)
+	return c.GetBorrowHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetInterestHistoryWithContext(ctx context.Context, req types.GetInterestHistoryReq) (resp types.GetInterestHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -49,7 +49,7 @@ func (c History) GetInterestHistoryWithContext(ctx context.Context, req types.Ge
 }
 
 func (c History) GetInterestHistory(req types.GetInterestHistoryReq) (resp types.GetInterestHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetInterestHistoryWithContext(c.ctx, req)
+	return c.GetInterestHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetBorrowPositionHistoryWithContext(ctx context.Context, req types.GetBorrowPositionHistoryReq) (resp types.GetBorrowPositionHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -62,7 +62,7 @@ func (c History) GetBorrowPositionHistoryWithContext(ctx context.Context, req ty
 }
 
 func (c History) GetBorrowPositionHistory(req types.GetBorrowPositionHistoryReq) (resp types.GetBorrowPositionHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetBorrowPositionHistoryWithContext(c.ctx, req)
+	return c.GetBorrowPositionHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetDustConversionHistoryWithContext(ctx context.Context, req types.GetDustConversionHistoryReq) (resp types.GetDustConversionHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -75,7 +75,7 @@ func (c History) GetDustConversionHistoryWithContext(ctx context.Context, req ty
 }
 
 func (c History) GetDustConversionHistory(req types.GetDustConversionHistoryReq) (resp types.GetDustConversionHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetDustConversionHistoryWithContext(c.ctx, req)
+	return c.GetDustConversionHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetFillHistoryWithContext(ctx context.Context, req types.GetFillHistoryReq) (resp types.GetFillHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -88,7 +88,7 @@ func (c History) GetFillHistoryWithContext(ctx context.Context, req types.GetFil
 }
 
 func (c History) GetFillHistory(req types.GetFillHistoryReq) (resp types.GetFillHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetFillHistoryWithContext(c.ctx, req)
+	return c.GetFillHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetFundingPaymentsWithContext(ctx context.Context, req types.GetFundingPaymentsReq) (resp types.GetFundingPaymentsResp, rh *types.ResponseHeaders, err error) {
@@ -101,7 +101,7 @@ func (c History) GetFundingPaymentsWithContext(ctx context.Context, req types.Ge
 }
 
 func (c History) GetFundingPayments(req types.GetFundingPaymentsReq) (resp types.GetFundingPaymentsResp, rh *types.ResponseHeaders, err error) {
-	return c.GetFundingPaymentsWithContext(c.ctx, req)
+	return c.GetFundingPaymentsWithContext(context.Background(), req)
 }
 
 func (c History) GetOrderHistoryWithContext(ctx context.Context, req types.GetOrderHistoryReq) (resp types.GetOrderHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -114,7 +114,7 @@ func (c History) GetOrderHistoryWithContext(ctx context.Context, req types.GetOr
 }
 
 func (c History) GetOrderHistory(req types.GetOrderHistoryReq) (resp types.GetOrderHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetOrderHistoryWithContext(c.ctx, req)
+	return c.GetOrderHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetRfqHistoryWithContext(ctx context.Context, req types.GetRfqHistoryReq) (resp types.GetRfqHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -127,7 +127,7 @@ func (c History) GetRfqHistoryWithContext(ctx context.Context, req types.GetRfqH
 }
 
 func (c History) GetRfqHistory(req types.GetRfqHistoryReq) (resp types.GetRfqHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetRfqHistoryWithContext(c.ctx, req)
+	return c.GetRfqHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetQuoteHistoryWithContext(ctx context.Context, req types.GetQuoteHistoryReq) (resp types.GetQuoteHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -140,7 +140,7 @@ func (c History) GetQuoteHistoryWithContext(ctx context.Context, req types.GetQu
 }
 
 func (c History) GetQuoteHistory(req types.GetQuoteHistoryReq) (resp types.GetQuoteHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetQuoteHistoryWithContext(c.ctx, req)
+	return c.GetQuoteHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetSettlementHistoryWithContext(ctx context.Context, req types.GetSettlementHistoryReq) (resp types.GetSettlementHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -153,7 +153,7 @@ func (c History) GetSettlementHistoryWithContext(ctx context.Context, req types.
 }
 
 func (c History) GetSettlementHistory(req types.GetSettlementHistoryReq) (resp types.GetSettlementHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetSettlementHistoryWithContext(c.ctx, req)
+	return c.GetSettlementHistoryWithContext(context.Background(), req)
 }
 
 func (c History) GetStrategyHistoryWithContext(ctx context.Context, req types.GetStrategyHistoryReq) (resp types.GetStrategyHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -166,5 +166,5 @@ func (c History) GetStrategyHistoryWithContext(ctx context.Context, req types.Ge
 }
 
 func (c History) GetStrategyHistory(req types.GetStrategyHistoryReq) (resp types.GetStrategyHistoryResp, rh *types.ResponseHeaders, err error) {
-	return c.GetStrategyHistoryWithContext(c.ctx, req)
+	return c.GetStrategyHistoryWithContext(context.Background(), req)
 }

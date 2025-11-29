@@ -30,7 +30,7 @@ func (c Account) GetAccountWithContext(ctx context.Context, req types.GetAccount
 }
 
 func (c Account) GetAccount(req types.GetAccountReq) (resp *types.Account, err error) {
-	return c.GetAccountWithContext(c.ctx, req)
+	return c.GetAccountWithContext(context.Background(), req)
 }
 
 func (c Account) UpdateAccountWithContext(ctx context.Context, req types.UpdateAccountReq) (err error) {
@@ -43,7 +43,7 @@ func (c Account) UpdateAccountWithContext(ctx context.Context, req types.UpdateA
 }
 
 func (c Account) UpdateAccount(req types.UpdateAccountReq) (err error) {
-	return c.UpdateAccountWithContext(c.ctx, req)
+	return c.UpdateAccountWithContext(context.Background(), req)
 }
 
 func (c Account) ConvertDustWithContext(ctx context.Context, req types.ConvertDustReq) (err error) {
@@ -56,7 +56,7 @@ func (c Account) ConvertDustWithContext(ctx context.Context, req types.ConvertDu
 }
 
 func (c Account) ConvertDust(req types.ConvertDustReq) (err error) {
-	return c.ConvertDustWithContext(c.ctx, req)
+	return c.ConvertDustWithContext(context.Background(), req)
 }
 
 func (c Account) GetMaxBorrowQuantityWithContext(ctx context.Context, req types.MaxBorrowQuantityReq) (resp *types.MaxBorrowQuantityResp, err error) {
@@ -69,7 +69,7 @@ func (c Account) GetMaxBorrowQuantityWithContext(ctx context.Context, req types.
 }
 
 func (c Account) GetMaxBorrowQuantity(req types.MaxBorrowQuantityReq) (resp *types.MaxBorrowQuantityResp, err error) {
-	return c.GetMaxBorrowQuantityWithContext(c.ctx, req)
+	return c.GetMaxBorrowQuantityWithContext(context.Background(), req)
 }
 
 func (c Account) GetMaxOrderQuantityWithContext(ctx context.Context, req types.MaxOrderQuantityReq) (resp *types.MaxOrderQuantityResp, err error) {
@@ -82,7 +82,7 @@ func (c Account) GetMaxOrderQuantityWithContext(ctx context.Context, req types.M
 }
 
 func (c Account) GetMaxOrderQuantity(req types.MaxOrderQuantityReq) (resp *types.MaxOrderQuantityResp, err error) {
-	return c.GetMaxOrderQuantityWithContext(c.ctx, req)
+	return c.GetMaxOrderQuantityWithContext(context.Background(), req)
 }
 
 func (c Account) GetMaxWithdrawalQuantityWithContext(ctx context.Context, req types.MaxWithdrawalQuantityReq) (resp *types.MaxWithdrawalQuantityResp, err error) {
@@ -95,5 +95,5 @@ func (c Account) GetMaxWithdrawalQuantityWithContext(ctx context.Context, req ty
 }
 
 func (c Account) GetMaxWithdrawalQuantity(req types.MaxWithdrawalQuantityReq) (resp *types.MaxWithdrawalQuantityResp, err error) {
-	return c.GetMaxWithdrawalQuantityWithContext(c.ctx, req)
+	return c.GetMaxWithdrawalQuantityWithContext(context.Background(), req)
 }

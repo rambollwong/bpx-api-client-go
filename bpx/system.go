@@ -29,7 +29,7 @@ func (c System) StatusWithContext(ctx context.Context) (resp *types.Status, err 
 }
 
 func (c System) Status() (*types.Status, error) {
-	return c.StatusWithContext(c.ctx)
+	return c.StatusWithContext(context.Background())
 }
 
 func (c System) PingWithContext(ctx context.Context) (resp string, err error) {
@@ -42,7 +42,7 @@ func (c System) PingWithContext(ctx context.Context) (resp string, err error) {
 }
 
 func (c System) Ping() (string, error) {
-	return c.PingWithContext(c.ctx)
+	return c.PingWithContext(context.Background())
 }
 
 func (c System) TimeWithContext(ctx context.Context) (resp string, err error) {
@@ -55,7 +55,7 @@ func (c System) TimeWithContext(ctx context.Context) (resp string, err error) {
 }
 
 func (c System) Time() (string, error) {
-	return c.TimeWithContext(c.ctx)
+	return c.TimeWithContext(context.Background())
 }
 
 func (c System) GetWalletsWithContext(ctx context.Context) (resp []types.Wallet, err error) {
@@ -68,5 +68,5 @@ func (c System) GetWalletsWithContext(ctx context.Context) (resp []types.Wallet,
 }
 
 func (c System) GetWallets() ([]types.Wallet, error) {
-	return c.GetWalletsWithContext(c.ctx)
+	return c.GetWalletsWithContext(context.Background())
 }

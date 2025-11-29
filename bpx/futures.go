@@ -27,5 +27,5 @@ func (c Futures) GetOpenPositionsWithContext(ctx context.Context, req types.GetO
 }
 
 func (c Futures) GetOpenPositions(req types.GetOpenPositionsReq) (resp []types.Position, err error) {
-	return c.GetOpenPositionsWithContext(c.ctx, req)
+	return c.GetOpenPositionsWithContext(context.Background(), req)
 }

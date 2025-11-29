@@ -27,7 +27,7 @@ func (c Order) GetOpenOrderWithContext(ctx context.Context, req types.GetOpenOrd
 }
 
 func (c Order) GetOpenOrder(req types.GetOpenOrderReq) (*types.Order, error) {
-	return c.GetOpenOrderWithContext(c.ctx, req)
+	return c.GetOpenOrderWithContext(context.Background(), req)
 }
 
 func (c Order) ExecuteOrderWithContext(ctx context.Context, req types.ExecuteOrderReq) (resp *types.Order, err error) {
@@ -40,7 +40,7 @@ func (c Order) ExecuteOrderWithContext(ctx context.Context, req types.ExecuteOrd
 }
 
 func (c Order) ExecuteOrder(req types.ExecuteOrderReq) (*types.Order, error) {
-	return c.ExecuteOrderWithContext(c.ctx, req)
+	return c.ExecuteOrderWithContext(context.Background(), req)
 }
 
 func (c Order) CancelOrderWithContext(ctx context.Context, req types.CancelOpenOrderReq) (resp *types.Order, err error) {
@@ -53,7 +53,7 @@ func (c Order) CancelOrderWithContext(ctx context.Context, req types.CancelOpenO
 }
 
 func (c Order) CancelOrder(req types.CancelOpenOrderReq) (*types.Order, error) {
-	return c.CancelOrderWithContext(c.ctx, req)
+	return c.CancelOrderWithContext(context.Background(), req)
 }
 
 func (c Order) ExecuteOrdersWithContext(ctx context.Context, req types.ExecuteOrdersReq) (resp []types.Order, err error) {
@@ -66,7 +66,7 @@ func (c Order) ExecuteOrdersWithContext(ctx context.Context, req types.ExecuteOr
 }
 
 func (c Order) ExecuteOrders(req types.ExecuteOrdersReq) ([]types.Order, error) {
-	return c.ExecuteOrdersWithContext(c.ctx, req)
+	return c.ExecuteOrdersWithContext(context.Background(), req)
 }
 
 func (c Order) GetOpenOrdersWithContext(ctx context.Context, req types.GetOpenOrdersReq) (resp []types.Order, err error) {
@@ -79,7 +79,7 @@ func (c Order) GetOpenOrdersWithContext(ctx context.Context, req types.GetOpenOr
 }
 
 func (c Order) GetOpenOrders(req types.GetOpenOrdersReq) ([]types.Order, error) {
-	return c.GetOpenOrdersWithContext(c.ctx, req)
+	return c.GetOpenOrdersWithContext(context.Background(), req)
 }
 
 func (c Order) CancelOpenOrdersWithContext(ctx context.Context, req types.CancelOpenOrdersReq) (resp []types.Order, err error) {
@@ -92,5 +92,5 @@ func (c Order) CancelOpenOrdersWithContext(ctx context.Context, req types.Cancel
 }
 
 func (c Order) CancelOpenOrders(req types.CancelOpenOrdersReq) ([]types.Order, error) {
-	return c.CancelOpenOrdersWithContext(c.ctx, req)
+	return c.CancelOpenOrdersWithContext(context.Background(), req)
 }

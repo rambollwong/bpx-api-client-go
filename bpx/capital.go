@@ -30,7 +30,7 @@ func (c Capital) GetBalancesWithContext(ctx context.Context, req types.GetBalanc
 }
 
 func (c Capital) GetBalances() (resp types.GetBalancesResp, err error) {
-	return c.GetBalancesWithContext(c.ctx, types.GetBalancesReq{})
+	return c.GetBalancesWithContext(context.Background(), types.GetBalancesReq{})
 }
 
 func (c Capital) GetCollateralWithContext(ctx context.Context, req types.GetCollateralReq) (resp *types.GetCollateralResp, err error) {
@@ -43,7 +43,7 @@ func (c Capital) GetCollateralWithContext(ctx context.Context, req types.GetColl
 }
 
 func (c Capital) GetCollateral(req types.GetCollateralReq) (resp *types.GetCollateralResp, err error) {
-	return c.GetCollateralWithContext(c.ctx, req)
+	return c.GetCollateralWithContext(context.Background(), req)
 }
 
 func (c Capital) GetDepositsWithContext(ctx context.Context, req types.GetDepositsReq) (resp []types.Deposit, err error) {
@@ -56,7 +56,7 @@ func (c Capital) GetDepositsWithContext(ctx context.Context, req types.GetDeposi
 }
 
 func (c Capital) GetDeposits(req types.GetDepositsReq) ([]types.Deposit, error) {
-	return c.GetDepositsWithContext(c.ctx, req)
+	return c.GetDepositsWithContext(context.Background(), req)
 }
 
 func (c Capital) GetDepositAddressWithContext(ctx context.Context, req types.GetDepositAddressReq) (resp *types.GetDepositAddressResp, err error) {
@@ -69,7 +69,7 @@ func (c Capital) GetDepositAddressWithContext(ctx context.Context, req types.Get
 }
 
 func (c Capital) GetDepositAddress(req types.GetDepositAddressReq) (resp *types.GetDepositAddressResp, err error) {
-	return c.GetDepositAddressWithContext(c.ctx, req)
+	return c.GetDepositAddressWithContext(context.Background(), req)
 }
 
 func (c Capital) GetWithdrawalsWithContext(ctx context.Context, req types.GetWithdrawalsReq) (resp []types.Withdrawal, err error) {
@@ -82,7 +82,7 @@ func (c Capital) GetWithdrawalsWithContext(ctx context.Context, req types.GetWit
 }
 
 func (c Capital) GetWithdrawals(req types.GetWithdrawalsReq) ([]types.Withdrawal, error) {
-	return c.GetWithdrawalsWithContext(c.ctx, req)
+	return c.GetWithdrawalsWithContext(context.Background(), req)
 }
 
 func (c Capital) RequestWithdrawalWithContext(ctx context.Context, req types.RequestWithdrawalReq) (resp *types.Withdrawal, err error) {
@@ -95,5 +95,5 @@ func (c Capital) RequestWithdrawalWithContext(ctx context.Context, req types.Req
 }
 
 func (c Capital) RequestWithdrawal(req types.RequestWithdrawalReq) (resp *types.Withdrawal, err error) {
-	return c.RequestWithdrawalWithContext(c.ctx, req)
+	return c.RequestWithdrawalWithContext(context.Background(), req)
 }

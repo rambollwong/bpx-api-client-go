@@ -27,7 +27,7 @@ func (c BorrowLendMarkets) GetBorrowLendMarketsWithContext(ctx context.Context) 
 }
 
 func (c BorrowLendMarkets) GetBorrowLendMarkets() ([]types.BorrowLendMarketResp, error) {
-	return c.GetBorrowLendMarketsWithContext(c.ctx)
+	return c.GetBorrowLendMarketsWithContext(context.Background())
 }
 
 func (c BorrowLendMarkets) GetBorrowLendMarketsHistoryWithContext(ctx context.Context, req types.BorrowLendMarketHistoryReq) (resp []types.BorrowLendMarketHistoryResp, err error) {
@@ -40,5 +40,5 @@ func (c BorrowLendMarkets) GetBorrowLendMarketsHistoryWithContext(ctx context.Co
 }
 
 func (c BorrowLendMarkets) GetBorrowLendMarketsHistory(req types.BorrowLendMarketHistoryReq) ([]types.BorrowLendMarketHistoryResp, error) {
-	return c.GetBorrowLendMarketsHistoryWithContext(c.ctx, req)
+	return c.GetBorrowLendMarketsHistoryWithContext(context.Background(), req)
 }

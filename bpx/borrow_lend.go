@@ -28,7 +28,7 @@ func (c BorrowLend) GetBorrowLendPositionsWithContext(ctx context.Context, req t
 }
 
 func (c BorrowLend) GetBorrowLendPositions(req types.GetBorrowLendPositionReq) (resp []types.BorrowLendPosition, err error) {
-	return c.GetBorrowLendPositionsWithContext(c.ctx, req)
+	return c.GetBorrowLendPositionsWithContext(context.Background(), req)
 }
 
 func (c BorrowLend) ExecuteBorrowLendWithContext(ctx context.Context, req types.ExecuteBorrowLendReq) (err error) {
@@ -41,7 +41,7 @@ func (c BorrowLend) ExecuteBorrowLendWithContext(ctx context.Context, req types.
 }
 
 func (c BorrowLend) ExecuteBorrowLend(req types.ExecuteBorrowLendReq) (err error) {
-	return c.ExecuteBorrowLendWithContext(c.ctx, req)
+	return c.ExecuteBorrowLendWithContext(context.Background(), req)
 }
 
 func (c BorrowLend) GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionWithContext(
@@ -61,5 +61,5 @@ func (c BorrowLend) GetAnEstimatedLiquidationPriceForPotentialBorrowLendPosition
 func (c BorrowLend) GetAnEstimatedLiquidationPriceForPotentialBorrowLendPosition(
 	req types.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionReq,
 ) (resp types.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionResp, err error) {
-	return c.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionWithContext(c.ctx, req)
+	return c.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionWithContext(context.Background(), req)
 }

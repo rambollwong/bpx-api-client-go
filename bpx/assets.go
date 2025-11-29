@@ -27,7 +27,7 @@ func (c Assets) GetAssetsWithContext(ctx context.Context) (resp []types.AssetRes
 }
 
 func (c Assets) GetAssets() ([]types.AssetResp, error) {
-	return c.GetAssetsWithContext(c.ctx)
+	return c.GetAssetsWithContext(context.Background())
 }
 
 func (c Assets) GetCollateralsWithContext(ctx context.Context) (resp []types.CollateralResp, err error) {
@@ -41,5 +41,5 @@ func (c Assets) GetCollateralsWithContext(ctx context.Context) (resp []types.Col
 }
 
 func (c Assets) GetCollaterals() ([]types.CollateralResp, error) {
-	return c.GetCollateralsWithContext(c.ctx)
+	return c.GetCollateralsWithContext(context.Background())
 }
