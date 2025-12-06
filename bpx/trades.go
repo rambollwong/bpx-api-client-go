@@ -14,7 +14,7 @@ const (
 )
 
 type Trades struct {
-	*Client
+	c *Client
 }
 
 func (c Trades) GetRecentTradesWithContext(ctx context.Context, req types.GetRecentTradesReq) (resp []types.Trade, err error) {
@@ -22,7 +22,7 @@ func (c Trades) GetRecentTradesWithContext(ctx context.Context, req types.GetRec
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetRecentTradesReq, []types.Trade](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetRecentTradesReq, []types.Trade](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -35,7 +35,7 @@ func (c Trades) GetHistoricalTradesWithContext(ctx context.Context, req types.Ge
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetHistoricalTradesReq, []types.Trade](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetHistoricalTradesReq, []types.Trade](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 func (c Trades) GetHistoricalTrades(req types.GetHistoricalTradesReq) ([]types.Trade, error) {

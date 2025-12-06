@@ -14,7 +14,7 @@ const (
 )
 
 type BorrowLendMarkets struct {
-	*Client
+	c *Client
 }
 
 func (c BorrowLendMarkets) GetBorrowLendMarketsWithContext(ctx context.Context) (resp []types.BorrowLendMarketResp, err error) {
@@ -22,7 +22,7 @@ func (c BorrowLendMarkets) GetBorrowLendMarketsWithContext(ctx context.Context) 
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[any, []types.BorrowLendMarketResp](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, []types.BorrowLendMarketResp](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 
@@ -35,7 +35,7 @@ func (c BorrowLendMarkets) GetBorrowLendMarketsHistoryWithContext(ctx context.Co
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.BorrowLendMarketHistoryReq, []types.BorrowLendMarketHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.BorrowLendMarketHistoryReq, []types.BorrowLendMarketHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 

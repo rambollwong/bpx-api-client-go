@@ -13,7 +13,7 @@ const (
 )
 
 type Futures struct {
-	*Client
+	c *Client
 }
 
 func (c Futures) GetOpenPositionsWithContext(ctx context.Context, req types.GetOpenPositionsReq) (resp []types.Position, err error) {
@@ -21,7 +21,7 @@ func (c Futures) GetOpenPositionsWithContext(ctx context.Context, req types.GetO
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetOpenPositionsReq, []types.Position](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetOpenPositionsReq, []types.Position](ctx, http.MethodGet, u, req, c.c)
 	return
 
 }

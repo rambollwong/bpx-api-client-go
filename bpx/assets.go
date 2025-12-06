@@ -14,7 +14,7 @@ const (
 )
 
 type Assets struct {
-	*Client
+	c *Client
 }
 
 func (c Assets) GetAssetsWithContext(ctx context.Context) (resp []types.AssetResp, err error) {
@@ -22,7 +22,7 @@ func (c Assets) GetAssetsWithContext(ctx context.Context) (resp []types.AssetRes
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[any, []types.AssetResp](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, []types.AssetResp](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 
@@ -35,7 +35,7 @@ func (c Assets) GetCollateralsWithContext(ctx context.Context) (resp []types.Col
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[any, []types.CollateralResp](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, []types.CollateralResp](ctx, http.MethodGet, u, nil, c.c)
 	return
 
 }

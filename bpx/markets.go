@@ -21,7 +21,7 @@ const (
 )
 
 type Markets struct {
-	*Client
+	c *Client
 }
 
 func (c Markets) GetMarketsWithContext(ctx context.Context) (resp []types.Market, err error) {
@@ -29,7 +29,7 @@ func (c Markets) GetMarketsWithContext(ctx context.Context) (resp []types.Market
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[any, []types.Market](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, []types.Market](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 
@@ -42,7 +42,7 @@ func (c Markets) GetMarketWithContext(ctx context.Context, req types.GetMarketRe
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetMarketReq, *types.Market](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetMarketReq, *types.Market](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -55,7 +55,7 @@ func (c Markets) GetTickerWithContext(ctx context.Context, req types.GetTickerRe
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetTickerReq, *types.Ticker](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetTickerReq, *types.Ticker](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -68,7 +68,7 @@ func (c Markets) GetTickersWithContext(ctx context.Context, req types.GetTickers
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetTickersReq, []types.Ticker](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetTickersReq, []types.Ticker](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -81,7 +81,7 @@ func (c Markets) GetDepthWithContext(ctx context.Context, req types.GetDepthReq)
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetDepthReq, *types.Depth](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetDepthReq, *types.Depth](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -94,7 +94,7 @@ func (c Markets) GetKlinesWithContext(ctx context.Context, req types.GetKlinesRe
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetKlinesReq, []types.Kline](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetKlinesReq, []types.Kline](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -107,7 +107,7 @@ func (c Markets) GetAllMarkPricesWithContext(ctx context.Context, req types.GetA
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetAllMarkPricesReq, []types.MarkPrice](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetAllMarkPricesReq, []types.MarkPrice](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -120,7 +120,7 @@ func (c Markets) GetOpenInterestWithContext(ctx context.Context, req types.GetOp
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetOpenInterestReq, []types.OpenInterest](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetOpenInterestReq, []types.OpenInterest](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -133,7 +133,7 @@ func (c Markets) GetFundingIntervalRatesWithContext(ctx context.Context, req typ
 	if err != nil {
 		return nil, nil, err
 	}
-	return DoRequest[types.GetFundingIntervalRatesReq, types.GetFundingIntervalRatesResp](ctx, http.MethodGet, u, req, c.Client)
+	return DoRequest[types.GetFundingIntervalRatesReq, types.GetFundingIntervalRatesResp](ctx, http.MethodGet, u, req, c.c)
 }
 
 func (c Markets) GetFundingIntervalRates(req types.GetFundingIntervalRatesReq) (types.GetFundingIntervalRatesResp, *types.ResponseHeaders, error) {

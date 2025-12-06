@@ -15,7 +15,7 @@ const (
 )
 
 type BorrowLend struct {
-	*Client
+	c *Client
 }
 
 func (c BorrowLend) GetBorrowLendPositionsWithContext(ctx context.Context, req types.GetBorrowLendPositionReq) (resp []types.BorrowLendPosition, err error) {
@@ -23,7 +23,7 @@ func (c BorrowLend) GetBorrowLendPositionsWithContext(ctx context.Context, req t
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetBorrowLendPositionReq, []types.BorrowLendPosition](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetBorrowLendPositionReq, []types.BorrowLendPosition](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -36,7 +36,7 @@ func (c BorrowLend) ExecuteBorrowLendWithContext(ctx context.Context, req types.
 	if err != nil {
 		return err
 	}
-	_, _, err = DoRequest[types.ExecuteBorrowLendReq, struct{}](ctx, http.MethodPost, u, req, c.Client)
+	_, _, err = DoRequest[types.ExecuteBorrowLendReq, struct{}](ctx, http.MethodPost, u, req, c.c)
 	return
 }
 
@@ -54,7 +54,7 @@ func (c BorrowLend) GetAnEstimatedLiquidationPriceForPotentialBorrowLendPosition
 	}
 	resp, _, err = DoRequest[
 		types.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionReq,
-		types.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionResp](ctx, http.MethodGet, u, req, c.Client)
+		types.GetAnEstimatedLiquidationPriceForPotentialBorrowLendPositionResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 

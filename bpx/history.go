@@ -23,7 +23,7 @@ const (
 )
 
 type History struct {
-	*Client
+	c *Client
 }
 
 func (c History) GetBorrowHistoryWithContext(ctx context.Context, req types.GetBorrowHistoryReq) (resp types.GetBorrowHistoryResp, rh *types.ResponseHeaders, err error) {
@@ -31,7 +31,7 @@ func (c History) GetBorrowHistoryWithContext(ctx context.Context, req types.GetB
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetBorrowHistoryReq, types.GetBorrowHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetBorrowHistoryReq, types.GetBorrowHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -44,7 +44,7 @@ func (c History) GetInterestHistoryWithContext(ctx context.Context, req types.Ge
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetInterestHistoryReq, types.GetInterestHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetInterestHistoryReq, types.GetInterestHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -57,7 +57,7 @@ func (c History) GetBorrowPositionHistoryWithContext(ctx context.Context, req ty
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetBorrowPositionHistoryReq, types.GetBorrowPositionHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetBorrowPositionHistoryReq, types.GetBorrowPositionHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -70,7 +70,7 @@ func (c History) GetDustConversionHistoryWithContext(ctx context.Context, req ty
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetDustConversionHistoryReq, types.GetDustConversionHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetDustConversionHistoryReq, types.GetDustConversionHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -83,7 +83,7 @@ func (c History) GetFillHistoryWithContext(ctx context.Context, req types.GetFil
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetFillHistoryReq, types.GetFillHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetFillHistoryReq, types.GetFillHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -96,7 +96,7 @@ func (c History) GetFundingPaymentsWithContext(ctx context.Context, req types.Ge
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetFundingPaymentsReq, types.GetFundingPaymentsResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetFundingPaymentsReq, types.GetFundingPaymentsResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -109,7 +109,7 @@ func (c History) GetOrderHistoryWithContext(ctx context.Context, req types.GetOr
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetOrderHistoryReq, types.GetOrderHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetOrderHistoryReq, types.GetOrderHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -122,7 +122,7 @@ func (c History) GetRfqHistoryWithContext(ctx context.Context, req types.GetRfqH
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetRfqHistoryReq, types.GetRfqHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetRfqHistoryReq, types.GetRfqHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -135,7 +135,7 @@ func (c History) GetQuoteHistoryWithContext(ctx context.Context, req types.GetQu
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetQuoteHistoryReq, types.GetQuoteHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetQuoteHistoryReq, types.GetQuoteHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -148,7 +148,7 @@ func (c History) GetSettlementHistoryWithContext(ctx context.Context, req types.
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetSettlementHistoryReq, types.GetSettlementHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetSettlementHistoryReq, types.GetSettlementHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -161,7 +161,7 @@ func (c History) GetStrategyHistoryWithContext(ctx context.Context, req types.Ge
 	if err != nil {
 		return nil, nil, err
 	}
-	resp, rh, err = DoRequest[types.GetStrategyHistoryReq, types.GetStrategyHistoryResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, rh, err = DoRequest[types.GetStrategyHistoryReq, types.GetStrategyHistoryResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 

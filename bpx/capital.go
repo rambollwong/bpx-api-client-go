@@ -17,7 +17,7 @@ const (
 )
 
 type Capital struct {
-	*Client
+	c *Client
 }
 
 func (c Capital) GetBalancesWithContext(ctx context.Context, req types.GetBalancesReq) (resp types.GetBalancesResp, err error) {
@@ -25,7 +25,7 @@ func (c Capital) GetBalancesWithContext(ctx context.Context, req types.GetBalanc
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetBalancesReq, types.GetBalancesResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetBalancesReq, types.GetBalancesResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -38,7 +38,7 @@ func (c Capital) GetCollateralWithContext(ctx context.Context, req types.GetColl
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetCollateralReq, *types.GetCollateralResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetCollateralReq, *types.GetCollateralResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -51,7 +51,7 @@ func (c Capital) GetDepositsWithContext(ctx context.Context, req types.GetDeposi
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetDepositsReq, []types.Deposit](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetDepositsReq, []types.Deposit](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -64,7 +64,7 @@ func (c Capital) GetDepositAddressWithContext(ctx context.Context, req types.Get
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetDepositAddressReq, *types.GetDepositAddressResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetDepositAddressReq, *types.GetDepositAddressResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -77,7 +77,7 @@ func (c Capital) GetWithdrawalsWithContext(ctx context.Context, req types.GetWit
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetWithdrawalsReq, []types.Withdrawal](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetWithdrawalsReq, []types.Withdrawal](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -90,7 +90,7 @@ func (c Capital) RequestWithdrawalWithContext(ctx context.Context, req types.Req
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.RequestWithdrawalReq, *types.Withdrawal](ctx, http.MethodPost, u, req, c.Client)
+	resp, _, err = DoRequest[types.RequestWithdrawalReq, *types.Withdrawal](ctx, http.MethodPost, u, req, c.c)
 	return
 }
 

@@ -16,7 +16,7 @@ const (
 )
 
 type System struct {
-	*Client
+	c *Client
 }
 
 func (c System) StatusWithContext(ctx context.Context) (resp *types.Status, err error) {
@@ -24,7 +24,7 @@ func (c System) StatusWithContext(ctx context.Context) (resp *types.Status, err 
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[any, *types.Status](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, *types.Status](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 
@@ -37,7 +37,7 @@ func (c System) PingWithContext(ctx context.Context) (resp string, err error) {
 	if err != nil {
 		return "", err
 	}
-	resp, _, err = DoRequest[any, string](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, string](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 
@@ -50,7 +50,7 @@ func (c System) TimeWithContext(ctx context.Context) (resp string, err error) {
 	if err != nil {
 		return "", err
 	}
-	resp, _, err = DoRequest[any, string](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, string](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 
@@ -63,7 +63,7 @@ func (c System) GetWalletsWithContext(ctx context.Context) (resp []types.Wallet,
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[any, []types.Wallet](ctx, http.MethodGet, u, nil, c.Client)
+	resp, _, err = DoRequest[any, []types.Wallet](ctx, http.MethodGet, u, nil, c.c)
 	return
 }
 

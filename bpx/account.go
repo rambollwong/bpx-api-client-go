@@ -17,7 +17,7 @@ const (
 )
 
 type Account struct {
-	*Client
+	c *Client
 }
 
 func (c Account) GetAccountWithContext(ctx context.Context, req types.GetAccountReq) (resp *types.Account, err error) {
@@ -25,7 +25,7 @@ func (c Account) GetAccountWithContext(ctx context.Context, req types.GetAccount
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetAccountReq, *types.Account](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetAccountReq, *types.Account](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -38,7 +38,7 @@ func (c Account) UpdateAccountWithContext(ctx context.Context, req types.UpdateA
 	if err != nil {
 		return err
 	}
-	_, _, err = DoRequest[types.UpdateAccountReq, struct{}](ctx, http.MethodPatch, u, req, c.Client)
+	_, _, err = DoRequest[types.UpdateAccountReq, struct{}](ctx, http.MethodPatch, u, req, c.c)
 	return
 }
 
@@ -51,7 +51,7 @@ func (c Account) ConvertDustWithContext(ctx context.Context, req types.ConvertDu
 	if err != nil {
 		return err
 	}
-	_, _, err = DoRequest[types.ConvertDustReq, struct{}](ctx, http.MethodPost, u, req, c.Client)
+	_, _, err = DoRequest[types.ConvertDustReq, struct{}](ctx, http.MethodPost, u, req, c.c)
 	return
 }
 
@@ -64,7 +64,7 @@ func (c Account) GetMaxBorrowQuantityWithContext(ctx context.Context, req types.
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.MaxBorrowQuantityReq, *types.MaxBorrowQuantityResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.MaxBorrowQuantityReq, *types.MaxBorrowQuantityResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -77,7 +77,7 @@ func (c Account) GetMaxOrderQuantityWithContext(ctx context.Context, req types.M
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.MaxOrderQuantityReq, *types.MaxOrderQuantityResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.MaxOrderQuantityReq, *types.MaxOrderQuantityResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -90,7 +90,7 @@ func (c Account) GetMaxWithdrawalQuantityWithContext(ctx context.Context, req ty
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.MaxWithdrawalQuantityReq, *types.MaxWithdrawalQuantityResp](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.MaxWithdrawalQuantityReq, *types.MaxWithdrawalQuantityResp](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 

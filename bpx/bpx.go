@@ -43,47 +43,47 @@ func NewClient(key, secret string) *Client {
 }
 
 func (c *Client) Asserts() Assets {
-	return Assets{c}
+	return Assets{c: c}
 }
 
 func (c *Client) BorrowLendMarkets() BorrowLendMarkets {
-	return BorrowLendMarkets{c}
+	return BorrowLendMarkets{c: c}
 }
 
 func (c *Client) Markets() Markets {
-	return Markets{c}
+	return Markets{c: c}
 }
 
 func (c *Client) System() System {
-	return System{c}
+	return System{c: c}
 }
 
 func (c *Client) Trades() Trades {
-	return Trades{c}
+	return Trades{c: c}
 }
 
 func (c *Client) Account() Account {
-	return Account{c}
+	return Account{c: c}
 }
 
 func (c *Client) BorrowLend() BorrowLend {
-	return BorrowLend{c}
+	return BorrowLend{c: c}
 }
 
 func (c *Client) Capital() Capital {
-	return Capital{c}
+	return Capital{c: c}
 }
 
 func (c *Client) Futures() Futures {
-	return Futures{c}
+	return Futures{c: c}
 }
 
 func (c *Client) History() History {
-	return History{c}
+	return History{c: c}
 }
 
 func (c *Client) Order() Order {
-	return Order{c}
+	return Order{c: c}
 }
 
 type WsClient struct {

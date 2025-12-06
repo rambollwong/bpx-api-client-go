@@ -14,7 +14,7 @@ const (
 )
 
 type Order struct {
-	*Client
+	c *Client
 }
 
 func (c Order) GetOpenOrderWithContext(ctx context.Context, req types.GetOpenOrderReq) (resp *types.Order, err error) {
@@ -22,7 +22,7 @@ func (c Order) GetOpenOrderWithContext(ctx context.Context, req types.GetOpenOrd
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetOpenOrderReq, *types.Order](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetOpenOrderReq, *types.Order](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -35,7 +35,7 @@ func (c Order) ExecuteOrderWithContext(ctx context.Context, req types.ExecuteOrd
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.ExecuteOrderReq, *types.Order](ctx, http.MethodPost, u, req, c.Client)
+	resp, _, err = DoRequest[types.ExecuteOrderReq, *types.Order](ctx, http.MethodPost, u, req, c.c)
 	return
 }
 
@@ -48,7 +48,7 @@ func (c Order) CancelOrderWithContext(ctx context.Context, req types.CancelOpenO
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.CancelOpenOrderReq, *types.Order](ctx, http.MethodDelete, u, req, c.Client)
+	resp, _, err = DoRequest[types.CancelOpenOrderReq, *types.Order](ctx, http.MethodDelete, u, req, c.c)
 	return
 }
 
@@ -61,7 +61,7 @@ func (c Order) ExecuteOrdersWithContext(ctx context.Context, req types.ExecuteOr
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.ExecuteOrdersReq, []types.Order](ctx, http.MethodPost, u, req, c.Client)
+	resp, _, err = DoRequest[types.ExecuteOrdersReq, []types.Order](ctx, http.MethodPost, u, req, c.c)
 	return
 }
 
@@ -74,7 +74,7 @@ func (c Order) GetOpenOrdersWithContext(ctx context.Context, req types.GetOpenOr
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.GetOpenOrdersReq, []types.Order](ctx, http.MethodGet, u, req, c.Client)
+	resp, _, err = DoRequest[types.GetOpenOrdersReq, []types.Order](ctx, http.MethodGet, u, req, c.c)
 	return
 }
 
@@ -87,7 +87,7 @@ func (c Order) CancelOpenOrdersWithContext(ctx context.Context, req types.Cancel
 	if err != nil {
 		return nil, err
 	}
-	resp, _, err = DoRequest[types.CancelOpenOrdersReq, []types.Order](ctx, http.MethodDelete, u, req, c.Client)
+	resp, _, err = DoRequest[types.CancelOpenOrdersReq, []types.Order](ctx, http.MethodDelete, u, req, c.c)
 	return
 }
 
