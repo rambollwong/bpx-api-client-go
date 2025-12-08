@@ -30,10 +30,16 @@ type WsSubscribeMessage struct {
 // WsMessageHandler is a function type for handling WebSocket messages
 type WsMessageHandler func(msg []byte)
 
+type WsCodeMessage struct {
+	Code    int    `json:"code"`
+	Message string `json:"message"`
+}
+
 // WsMessage represents a WebSocket message
 type WsMessage[D any] struct {
-	Stream string `json:"stream"`
-	Data   D      `json:"data,omitempty"`
+	Stream string         `json:"stream"`
+	Data   D              `json:"data,omitempty"`
+	Error  *WsCodeMessage `json:"error,omitempty"`
 }
 
 type WsOrderData struct {
@@ -431,6 +437,10 @@ func (ws *WsClient) handleMessages(ctx context.Context) {
 		if err := json.Unmarshal(msg, &wsMsg); err != nil {
 			ws.pushErr(fmt.Errorf("unmarshal ws message error: %w", err))
 			continue
+		}
+
+		if wsMsg.Error != nil {
+			ws.pushErr(fmt.Errorf("ws message error: code: %d, message: %s", wsMsg.Error.Code, wsMsg.Error.Message))
 		}
 
 		if msgHandlers, ok := ws.handlers[wsMsg.Stream]; ok {

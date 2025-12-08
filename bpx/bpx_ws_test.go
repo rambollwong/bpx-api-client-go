@@ -49,6 +49,8 @@ func TestWsClient_SubscribeDepth(t *testing.T) {
 		require.Fail(t, "timeout")
 	case d := <-depthC:
 		require.NotEmpty(t, d)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -68,6 +70,8 @@ func TestWsClient_SubscribeBookTicker(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -87,6 +91,8 @@ func TestWsClient_SubscribeKline(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -106,6 +112,8 @@ func TestWsClient_SubscribeLiquidation(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -125,6 +133,8 @@ func TestWsClient_SubscribeMarkPrice(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -144,6 +154,8 @@ func TestWsClient_SubscribeTicker(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -163,6 +175,8 @@ func TestWsClient_SubscribeOpenInterest(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -182,6 +196,8 @@ func TestWsClient_SubscribeTrade(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -201,6 +217,8 @@ func TestWsClient_SubscribeOrderUpdate(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
 
@@ -220,5 +238,7 @@ func TestWsClient_SubscribePositionUpdate(t *testing.T) {
 		require.Fail(t, "timeout")
 	case v := <-c:
 		require.NotEmpty(t, v)
+	case err := <-ws.ErrChan():
+		require.NoError(t, err)
 	}
 }
