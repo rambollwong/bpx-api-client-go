@@ -441,6 +441,7 @@ func (ws *WsClient) handleMessages(ctx context.Context) {
 
 		if wsMsg.Error != nil {
 			ws.pushErr(fmt.Errorf("ws message error: code: %d, message: %s", wsMsg.Error.Code, wsMsg.Error.Message))
+			continue
 		}
 
 		if msgHandlers, ok := ws.handlers[wsMsg.Stream]; ok {
