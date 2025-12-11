@@ -70,8 +70,8 @@ type QuantityFilter struct {
 }
 
 type OrderBookFilters struct {
-	Price          *PriceFilter    `json:"price,omitempty"`
-	QuantityFilter *QuantityFilter `json:"quantityFilter,omitempty"`
+	Price    *PriceFilter    `json:"price,omitempty"`
+	Quantity *QuantityFilter `json:"quantity,omitempty"`
 }
 
 type Balance struct {
