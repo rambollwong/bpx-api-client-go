@@ -192,7 +192,7 @@ func (ws *WsClient) Connect(ctx context.Context) error {
 		}
 		dialer = websocket.Dialer{Proxy: http.ProxyURL(proxyUrl)}
 	} else {
-		dialer = websocket.Dialer{}
+		dialer = websocket.Dialer{Proxy: http.ProxyFromEnvironment}
 	}
 	conn, _, err := dialer.DialContext(ctx, EndpointWs, nil)
 	if err != nil {
