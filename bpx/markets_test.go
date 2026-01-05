@@ -54,6 +54,11 @@ func TestMarkets_GetDepth(t *testing.T) {
 	res, err := c.Markets().GetDepth(types.GetDepthReq{Symbol: "ETH_USDC_PERP"})
 	require.NoError(t, err)
 	require.NotNil(t, res)
+	res, err = c.Markets().GetDepth(types.GetDepthReq{Symbol: "ETH_USDC_PERP", Limit: 5})
+	require.NoError(t, err)
+	require.NotNil(t, res)
+	require.Equal(t, 5, len(res.Asks))
+	require.Equal(t, 5, len(res.Bids))
 
 	_, err = c.Markets().GetDepth(types.GetDepthReq{Symbol: ""})
 	require.Error(t, err)

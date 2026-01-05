@@ -95,8 +95,22 @@ type Ticker struct {
 	Trades             string `json:"trades,omitempty"`
 }
 
+type DepthLimit uint64
+
+const (
+	DepthLimitDefaultDepth DepthLimit = 0
+	DepthLimit5            DepthLimit = 5
+	DepthLimit10           DepthLimit = 10
+	DepthLimit20           DepthLimit = 20
+	DepthLimit50           DepthLimit = 50
+	DepthLimit100          DepthLimit = 100
+	DepthLimit500          DepthLimit = 500
+	DepthLimit1000         DepthLimit = 1000
+)
+
 type GetDepthReq struct {
 	Symbol string
+	Limit  DepthLimit
 }
 
 func (req GetDepthReq) Validate() error {
@@ -107,7 +121,11 @@ func (req GetDepthReq) Validate() error {
 }
 
 func (req GetDepthReq) BuildQueryParams() string {
-	return "symbol=" + req.Symbol
+	res := "symbol=" + req.Symbol
+	if req.Limit > 0 {
+		res += fmt.Sprintf("&limit=%d", req.Limit)
+	}
+	return res
 }
 
 type Depth struct {
